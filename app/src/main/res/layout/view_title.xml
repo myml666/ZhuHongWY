@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    app:elevation="0dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorMain"
+        android:id="@+id/view_title_container"
+        android:layout_height="@dimen/dp_45">
+        <TextView
+            app:layout_widthPercent="68%"
+            tools:text="标题"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:id="@+id/view_title_tv_zTitle"
+            android:textSize="@dimen/sp_18"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content" />
+        <ImageView
+            app:layout_aspectRatio="100%"
+            app:layout_widthPercent="9%"
+            android:src="@drawable/ic_back_white"
+            android:padding="@dimen/dp_5"
+            android:layout_centerVertical="true"
+            android:id="@+id/view_title_img_back"
+            app:layout_marginLeftPercent="3%"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="副标"
+            android:textSize="@dimen/sp_14"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:id="@+id/view_title_tv_fTitle"
+            app:layout_marginRightPercent="4%"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <ImageView
+            app:layout_aspectRatio="100%"
+            app:layout_widthPercent="9%"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dp_5"
+            android:visibility="gone"
+            android:id="@+id/view_title_img_rightIcon"
+            android:layout_centerVertical="true"
+            app:layout_marginRightPercent="3%"
+            android:layout_height="@dimen/dp_30" />
+    </android.support.percent.PercentRelativeLayout>
+</android.support.design.widget.AppBarLayout>

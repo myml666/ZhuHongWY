@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#03A9F4</color>
+    <!--//主颜色-->
+    <color name="colorMain">#03A9F4</color>
+    <!--//文字黑色-->
+    <color name="colorTextBlack">#212121</color>
+    <!--//文字灰色-->
+    <color name="colorTextGray">#757575</color>
+    <!--//选择界面遮罩-->
+    <color name="colorMask">#44000000</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorHomeItemLine">#32000000</color>
+</resources>
