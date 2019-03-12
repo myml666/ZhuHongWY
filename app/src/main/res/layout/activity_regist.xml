@@ -32,6 +32,13 @@
             android:inputType="textPassword"
             android:layout_marginTop="@dimen/dp_15"
             style="@style/EtStyle_Login" />
+        <EditText
+            android:id="@+id/activity_regist_wypass"
+            android:hint="请输入物业公司安全密码"
+            android:visibility="gone"
+            android:inputType="textPassword"
+            android:layout_marginTop="@dimen/dp_15"
+            style="@style/EtStyle_Login" />
         <TextView
             android:id="@+id/activity_regist_tv_regist"
             android:textSize="@dimen/sp_15"

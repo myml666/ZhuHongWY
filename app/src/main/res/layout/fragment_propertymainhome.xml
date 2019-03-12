@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorMainHomeBg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.percent.PercentRelativeLayout
@@ -16,16 +17,19 @@
             app:banner_pointContainerBackground="@android:color/transparent"
             />
     </android.support.percent.PercentRelativeLayout>
-    <GridView
+    <com.zhwy.app.widget.MyDividerGridView
         android:id="@+id/fragment_propertymainhome_gv"
-        android:padding="@dimen/dp_1"
-        android:numColumns="2"
+        android:padding="@dimen/dp_4"
+        android:numColumns="3"
+        android:layout_margin="@dimen/dp_5"
+        android:horizontalSpacing="0.0dip"
+        android:listSelector="@null"
+        android:background="@drawable/shape_homemenubg"
+        android:scrollbars="none"
         android:stretchMode="columnWidth"
-        android:background="@color/colorHomeItemLine"
-        android:horizontalSpacing="@dimen/dp_1"
-        android:verticalSpacing="@dimen/dp_1"
+        android:verticalSpacing="0.0dip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </GridView>
+    </com.zhwy.app.widget.MyDividerGridView>
 </LinearLayout>

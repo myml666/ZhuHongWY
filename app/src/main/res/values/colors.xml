@@ -13,4 +13,8 @@
     <color name="colorMask">#44000000</color>
     <color name="colorWhite">#fff</color>
     <color name="colorHomeItemLine">#32000000</color>
+    <!--列表的分割线颜色-->
+    <color name="colorLine">#32000000</color>
+    <!--主页Home背景色-->
+    <color name="colorMainHomeBg">#F2F2F2</color>
 </resources>

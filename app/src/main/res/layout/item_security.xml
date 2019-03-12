@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="@dimen/dp_2"
+    app:cardCornerRadius="@dimen/dp_4"
+    app:cardPreventCornerOverlap="true"
+    android:layout_height="@dimen/dp_150">
+    <android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/item_security_img_photo"
+            app:layout_widthPercent="30%"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/item_security_tv_name"
+            android:layout_toRightOf="@id/item_security_img_photo"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textColor="@color/colorTextBlack"
+            android:textSize="@dimen/sp_18"
+            tools:text="标题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/item_security_tv_state"
+            android:textColor="@color/colorTextGray"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/item_security_img_photo"
+            android:paddingBottom="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textSize="@dimen/sp_15"
+            tools:text="时间"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/item_security_layout_changestate"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/item_security_tv_zb"
+                android:textColor="@color/colorWhite"
+                android:text="值班"
+                android:textSize="@dimen/sp_15"
+                android:gravity="center"
+                android:background="@drawable/shape_btbg"
+                android:layout_width="@dimen/dp_90"
+                android:layout_height="@dimen/dp_30" />
+            <TextView
+                android:id="@+id/item_security_tv_xb"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/colorWhite"
+                android:text="休班"
+                android:textSize="@dimen/sp_15"
+                android:gravity="center"
+                android:background="@drawable/shape_btbg"
+                android:layout_width="@dimen/dp_90"
+                android:layout_height="@dimen/dp_30" />
+        </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
+</android.support.v7.widget.CardView>

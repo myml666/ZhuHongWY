@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/view_title"/>
+    <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/activity_addnotice_et_title"
+                android:background="@null"
+                android:padding="@dimen/dp_10"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/colorTextBlack"
+                android:hint="请输入标题"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:background="@color/colorLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"/>
+            <EditText
+                android:id="@+id/activity_addnotice_et_content"
+                android:background="@null"
+                android:padding="@dimen/dp_10"
+                android:textSize="@dimen/sp_15"
+                android:gravity="left"
+                android:textColor="@color/colorTextBlack"
+                android:hint="请输入通知详情"
+                android:minHeight="@dimen/dp_200"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:background="@color/colorLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"/>
+        </LinearLayout>
+    </ScrollView>
+    <TextView
+        android:id="@+id/activity_addnotice_tv_submit"
+        android:background="@color/colorMain"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_15"
+        android:text="发布"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40" />
+</LinearLayout>

@@ -71,7 +71,6 @@ public class MainHomeMenuAdapter extends BaseAdapter {
             convertView = View.inflate(mContext,R.layout.item_mainhome, null);
             holder = new ViewHolder();
             holder.texttitle = (TextView) convertView.findViewById(R.id.item_mainhome_tv_title);
-            holder.textftitle = (TextView) convertView.findViewById(R.id.item_mainhome_tv_ftitle);
             holder.imageView=convertView.findViewById(R.id.item_mainhome_img_icon);
             convertView.setTag(holder);
         } else {
@@ -80,7 +79,6 @@ public class MainHomeMenuAdapter extends BaseAdapter {
         MainHomeItemBean mainHomeItemBean = mDatas.get(i);
         if (mainHomeItemBean != null) {
             holder.texttitle.setText(mainHomeItemBean.getTitle());
-            holder.textftitle.setText(mainHomeItemBean.getFtitle());
             Glide.with(mContext)
                             .load(mainHomeItemBean.getIcon())
                             .into(holder.imageView);
@@ -98,7 +96,6 @@ public class MainHomeMenuAdapter extends BaseAdapter {
     static class ViewHolder {
         ImageView imageView;
         TextView texttitle;
-        TextView textftitle;
     }
     public interface OnItemClickListener{
         void onItemClick(int position);

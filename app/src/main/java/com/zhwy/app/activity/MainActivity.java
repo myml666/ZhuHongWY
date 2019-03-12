@@ -12,8 +12,10 @@ import com.zhwy.app.R;
 import com.zhwy.app.activity.base.BaseActivity;
 import com.zhwy.app.adapter.MainFragmentPagerAdapter;
 import com.zhwy.app.beans.TabEntity;
+import com.zhwy.app.fragment.MainMineFragment;
 import com.zhwy.app.fragment.owner.OwnerMainHomeFragment;
 import com.zhwy.app.fragment.property.PropertyMainHomeFragment;
+import com.zhwy.app.utils.ValuesUtils;
 
 import java.util.ArrayList;
 
@@ -92,8 +94,14 @@ public class MainActivity extends BaseActivity {
             mFragments=new ArrayList<>();
         }
         mFragments.clear();
-        mFragments.add(new PropertyMainHomeFragment());
-        mFragments.add(new OwnerMainHomeFragment());
+        String identity = ValuesUtils.getIdentity();
+        if(identity.equals(ValuesUtils.IDENTITY_WY)){
+            mFragments.add(new PropertyMainHomeFragment());
+            mFragments.add(new MainMineFragment());
+        }else {
+            mFragments.add(new OwnerMainHomeFragment());
+            mFragments.add(new MainMineFragment());
+        }
         if(mTabEntities==null){
             mTabEntities=new ArrayList<>();
         }

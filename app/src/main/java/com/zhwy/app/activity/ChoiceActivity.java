@@ -16,6 +16,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.base.BaseActivity;
 import com.zhwy.app.utils.CircularAnimUtil;
+import com.zhwy.app.utils.ValuesUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +35,6 @@ import butterknife.OnClick;
  */
 
 public class ChoiceActivity extends BaseActivity {
-    public static final String IDENTITY = "identity";//身份
     @BindView(R.id.activity_choice_layout_yz)
     RelativeLayout activityChoiceLayoutYz;
     @BindView(R.id.activity_choice_layout_wy)
@@ -61,11 +61,11 @@ public class ChoiceActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_choice_layout_yz:
-                SPUtils.getInstance().put(IDENTITY, "yz");
+                ValuesUtils.putIdentity(ValuesUtils.IDENTITY_YZ);
                 CircularAnimUtil.startActivity(ChoiceActivity.this, getStartActivityIntent(LoginActivity.class), activityChoiceLayoutYz, R.color.colorWhite);
                 break;
             case R.id.activity_choice_layout_wy:
-                SPUtils.getInstance().put(IDENTITY, "wy");
+                ValuesUtils.putIdentity(ValuesUtils.IDENTITY_WY);
                 CircularAnimUtil.startActivity(ChoiceActivity.this, getStartActivityIntent(LoginActivity.class), activityChoiceLayoutWy, R.color.colorWhite);
                 break;
         }

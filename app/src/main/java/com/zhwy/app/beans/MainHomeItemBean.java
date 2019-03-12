@@ -12,12 +12,10 @@ package com.zhwy.app.beans;
 
 public class MainHomeItemBean {
     private String title;//主标题
-    private String ftitle;//副标题
     private int icon;//图标
 
-    public MainHomeItemBean(String title, String ftitle, int icon) {
+    public MainHomeItemBean(String title, int icon) {
         this.title = title;
-        this.ftitle = ftitle;
         this.icon = icon;
     }
 
@@ -27,14 +25,6 @@ public class MainHomeItemBean {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getFtitle() {
-        return ftitle;
-    }
-
-    public void setFtitle(String ftitle) {
-        this.ftitle = ftitle;
     }
 
     public int getIcon() {

@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.NoticeActivity;
+import com.zhwy.app.activity.RepairActivity;
+import com.zhwy.app.activity.SecurityActivity;
 import com.zhwy.app.adapter.MainHomeMenuAdapter;
 import com.zhwy.app.beans.BannerBean;
 import com.zhwy.app.beans.MainHomeItemBean;
@@ -47,9 +49,8 @@ public class PropertyMainHomeFragment extends BaseFragment implements BGABanner.
     @BindView(R.id.fragment_propertymainhome_gv)
     GridView fragmentPropertymainhomeGv;
     private ArrayList<MainHomeItemBean> mHomeItemBeans;
-    private String[] mItemTitles = {"通知公告", "维修工单"};
-    private String[] mItemFTitles = {"停水停电重要通知", "业主提交的维修工单"};
-    private int[] mItemIcons = {R.drawable.ic_tz, R.drawable.ic_wx};
+    private String[] mItemTitles = {"通知公告", "维修/投诉","安保"};
+    private int[] mItemIcons = {R.drawable.ic_tz, R.drawable.ic_wx,R.drawable.ic_ab};
     private MainHomeMenuAdapter mMainHomeMenuAdapter;
 
     @Override
@@ -79,7 +80,7 @@ public class PropertyMainHomeFragment extends BaseFragment implements BGABanner.
         }
         mHomeItemBeans.clear();
         for (int x = 0; x < mItemTitles.length; x++) {
-            mHomeItemBeans.add(new MainHomeItemBean(mItemTitles[x], mItemFTitles[x], mItemIcons[x]));
+            mHomeItemBeans.add(new MainHomeItemBean(mItemTitles[x], mItemIcons[x]));
         }
         if (mMainHomeMenuAdapter == null) {
             mMainHomeMenuAdapter = new MainHomeMenuAdapter(mHomeItemBeans, getContext());
@@ -90,6 +91,14 @@ public class PropertyMainHomeFragment extends BaseFragment implements BGABanner.
                         case 0:
                             //通知公告
                             gotoActivity(NoticeActivity.class);
+                            break;
+                        case 1:
+                            //报修/投诉
+                            gotoActivity(RepairActivity.class);
+                            break;
+                        case 2:
+                            //安保
+                            gotoActivity(SecurityActivity.class);
                             break;
                     }
                 }

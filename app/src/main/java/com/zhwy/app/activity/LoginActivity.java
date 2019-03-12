@@ -14,6 +14,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.base.BaseActivity;
 import com.zhwy.app.utils.GetTextUtils;
+import com.zhwy.app.utils.ValuesUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,18 +80,19 @@ public class LoginActivity extends BaseActivity {
             ToastUtils.showShort("请输入密码");
             return;
         }
-        final String identity = SPUtils.getInstance().getString(ChoiceActivity.IDENTITY);//物业还是业主
+        final String identity = ValuesUtils.getIdentity();//物业还是业主
         AVUser.logInInBackground(identity+userName, passWord, new LogInCallback<AVUser>() {
             @Override
             public void done(AVUser avUser, AVException e) {
                 if(e==null){
                     //登录成功
                     ToastUtils.showShort("登录成功");
-                    if(identity.equals("wy")){
+                    if(identity.equals(ValuesUtils.IDENTITY_WY)){
 //                        物业
                         gotoActivity(MainActivity.class);
                     }else{
 //                        业主
+                        gotoActivity(MainActivity.class);
                     }
                     finish();
                 }else {
