@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.avos.avoscloud.AVException;
@@ -67,6 +68,7 @@ public class RepairActivity extends BaseActivity implements SwipeRefreshLayout.O
         multipleStatusView.setOnRetryClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                multipleStatusView.showLoading();
                 initNotice();
             }
         });
@@ -81,8 +83,13 @@ public class RepairActivity extends BaseActivity implements SwipeRefreshLayout.O
     }
 
     private void initNotice() {
+        String userId = getIntent().getStringExtra("userId");//如果是用户的话根据userID查询
         AVQuery<AVObject> query = new AVQuery<>("Repair");
         query.orderByDescending("createdAt");//根据时间查询
+        if(!TextUtils.isEmpty(userId)){
+            setTitle("我的报修/投诉", R.color.colorWhite);
+            query.whereEqualTo("userId",userId);//根据用户ID查询
+        }
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {

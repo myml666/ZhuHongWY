@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:clipChildren="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:background="@color/colorMain"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="60%"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_welcome_vptop"
+        android:layout_centerHorizontal="true"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        app:layout_marginTopPercent="10%"
+        app:layout_marginLeftPercent="12%"
+        app:layout_marginRightPercent="12%"
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="70%"
+        >
+
+    </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:layout_below="@id/activity_welcome_vptop"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:id="@+id/ctivity_welcome_mci"
+        android:minHeight="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/ctivity_welcome_ty"
+        app:layout_widthPercent="40%"
+        android:background="@drawable/shape_welcomebt"
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/colorMain"
+        android:text="立即体验"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_centerHorizontal="true"
+        android:layout_height="@dimen/dp_30"
+        android:layout_below="@id/ctivity_welcome_mci"
+        />
+</android.support.percent.PercentRelativeLayout>

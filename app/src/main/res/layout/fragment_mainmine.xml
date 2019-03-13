@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/colorWhite"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fragment_ownermainmine_icon"
+        android:src="@drawable/ic_defaultusericon"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_width="@dimen/dp_130"
+        android:layout_height="@dimen/dp_130" />
+    <TextView
+        android:id="@+id/fragment_ownermainmine_tv_username"
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/colorTextBlack"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.zhwy.app.widget.MyDividerGridView
+        android:id="@+id/fragment_ownermainmine_gv"
+        android:padding="@dimen/dp_4"
+        android:numColumns="3"
+        android:layout_margin="@dimen/dp_10"
+        android:horizontalSpacing="0.0dip"
+        android:listSelector="@null"
+        android:background="@drawable/shape_minemenubg"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0.0dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</android.support.constraint.ConstraintLayout>
+    </com.zhwy.app.widget.MyDividerGridView>
+</LinearLayout>

@@ -86,8 +86,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
     }
-    protected void setBackIcon(@DrawableRes int backIcon){
+    protected void setBackIcon(@DrawableRes int backIcon,boolean isShow){
         if(isHaveTitle()){
+            if(isShow){
+                mImageView_Back.setVisibility(View.VISIBLE);
+            }else {
+                mImageView_Back.setVisibility(View.GONE);
+            }
             mImageView_Back.setImageResource(backIcon);
         }
     }

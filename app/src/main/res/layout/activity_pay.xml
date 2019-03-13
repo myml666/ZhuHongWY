@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/view_title"/>
+    <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/colorTextBlack"
+                    android:text="联系手机："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/activity_pay_et_phone"
+                    android:textSize="@dimen/sp_15"
+                    android:background="@null"
+                    android:hint="请输入联系手机号"
+                    android:textColor="@color/colorTextBlack"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <View
+                android:background="@color/colorLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/colorTextBlack"
+                    android:text="住户楼号："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/activity_pay_et_number"
+                    android:textSize="@dimen/sp_15"
+                    android:hint="请输入住户楼号"
+                    android:background="@null"
+                    android:textColor="@color/colorTextBlack"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <View
+                android:background="@color/colorLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/colorTextBlack"
+                    android:text="缴费类别："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/activity_pay_tv_category"
+                    android:textSize="@dimen/sp_15"
+                    android:background="@null"
+                    android:text="请选择缴费类别"
+                    android:textColor="@color/colorTextGray"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <View
+                android:background="@color/colorLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/colorTextBlack"
+                    android:text="缴费金额："
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/activity_pay_et_money"
+                    android:textSize="@dimen/sp_15"
+                    android:inputType="numberDecimal"
+                    android:background="@null"
+                    android:hint="请输入缴费金额"
+                    android:textColor="@color/colorTextBlack"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <View
+                android:background="@color/colorLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"/>
+        </LinearLayout>
+    </ScrollView>
+    <TextView
+        android:id="@+id/activity_pay_tv_submit"
+        android:background="@color/colorMain"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_15"
+        android:text="缴费"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40" />
+</LinearLayout>

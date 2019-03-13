@@ -14,6 +14,7 @@ import com.blankj.utilcode.util.SPUtils;
 
 public class ValuesUtils {
     public static final String IDENTITY = "identity";//身份
+    public static final String WELCOMEFLAG = "welcomeflag";//是否看过欢迎页
     public static final String IDENTITY_YZ = "yz";//业主身份
     public static final String IDENTITY_WY = "wy";//物业身份
     public static final int REQUEST_CODE_CHOOSE = 1;//选择图片的状态码
@@ -31,5 +32,20 @@ public class ValuesUtils {
      */
     public static void putIdentity(String identity){
         SPUtils.getInstance().put(IDENTITY,identity);
+    }
+
+    /**
+     * 获取是否是看过欢迎页
+     * @return
+     */
+    public static boolean getWelcomFlag(){
+        return SPUtils.getInstance().getBoolean(WELCOMEFLAG, false);
+    }
+
+    /**
+     * 设置WelcomFlag
+     */
+    public static void putWelcomFlag(boolean flag){
+        SPUtils.getInstance().put(WELCOMEFLAG,flag);
     }
 }

@@ -101,10 +101,10 @@ public class RepaireAddActivity extends BaseActivity {
             @Override
             public void done(AVException e) {
                 if (e == null) {
-                    ToastUtils.showShort("发布成功");
+                    ToastUtils.showShort("提交成功");
                     finish();
                 } else {
-                    ToastUtils.showShort("发布失败请重试");
+                    ToastUtils.showShort("提交失败请重试");
                 }
             }
         });

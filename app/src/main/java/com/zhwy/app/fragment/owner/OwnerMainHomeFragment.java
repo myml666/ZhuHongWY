@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.NoticeActivity;
+import com.zhwy.app.activity.PayActivity;
 import com.zhwy.app.activity.RepaireAddActivity;
 import com.zhwy.app.activity.SecurityActivity;
 import com.zhwy.app.adapter.MainHomeMenuAdapter;
@@ -54,8 +55,8 @@ public class OwnerMainHomeFragment extends BaseFragment implements BGABanner.Ada
     @BindView(R.id.fragment_propertymainhome_gv)
     GridView fragmentPropertymainhomeGv;
     private ArrayList<MainHomeItemBean> mHomeItemBeans;
-    private String[] mItemTitles = {"通知公告", "报修/投诉","安保","在线客服"};
-    private int[] mItemIcons = {R.drawable.ic_tz, R.drawable.ic_wx,R.drawable.ic_ab,R.drawable.ic_qq};
+    private String[] mItemTitles = {"通知公告", "报修/投诉","安保","在线客服","缴费"};
+    private int[] mItemIcons = {R.drawable.ic_tz, R.drawable.ic_wx,R.drawable.ic_ab,R.drawable.ic_qq,R.drawable.ic_jf};
     private MainHomeMenuAdapter mMainHomeMenuAdapter;
 
     @Override
@@ -113,6 +114,10 @@ public class OwnerMainHomeFragment extends BaseFragment implements BGABanner.Ada
                             } else {
                                 ToastUtils.showShort("请安装QQ客户端");
                             }
+                            break;
+                        case 4:
+                            //缴费
+                            gotoActivity(PayActivity.class);
                             break;
                     }
                 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">朱红物业</string>
     <string name="empty_view_hint">暂无数据,点击刷新</string>
     <string name="error_view_hint">加载失败，点击重试</string>
     <string name="no_network_view_hint">网络异常，点击重试</string>

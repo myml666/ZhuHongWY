@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.NoticeActivity;
+import com.zhwy.app.activity.PayListActivity;
 import com.zhwy.app.activity.RepairActivity;
 import com.zhwy.app.activity.SecurityActivity;
 import com.zhwy.app.adapter.MainHomeMenuAdapter;
@@ -49,8 +50,8 @@ public class PropertyMainHomeFragment extends BaseFragment implements BGABanner.
     @BindView(R.id.fragment_propertymainhome_gv)
     GridView fragmentPropertymainhomeGv;
     private ArrayList<MainHomeItemBean> mHomeItemBeans;
-    private String[] mItemTitles = {"通知公告", "维修/投诉","安保"};
-    private int[] mItemIcons = {R.drawable.ic_tz, R.drawable.ic_wx,R.drawable.ic_ab};
+    private String[] mItemTitles = {"通知公告", "维修/投诉","安保","收费记录"};
+    private int[] mItemIcons = {R.drawable.ic_tz, R.drawable.ic_wx,R.drawable.ic_ab,R.drawable.ic_jf};
     private MainHomeMenuAdapter mMainHomeMenuAdapter;
 
     @Override
@@ -99,6 +100,10 @@ public class PropertyMainHomeFragment extends BaseFragment implements BGABanner.
                         case 2:
                             //安保
                             gotoActivity(SecurityActivity.class);
+                            break;
+                        case 3:
+                            //收费记录
+                            gotoActivity(PayListActivity.class);
                             break;
                     }
                 }

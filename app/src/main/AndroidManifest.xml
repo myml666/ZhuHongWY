@@ -25,12 +25,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public" />
         </provider>
-        <activity android:name=".activity.ChoiceActivity" android:screenOrientation="portrait" android:launchMode="singleTop">
+        <activity android:name=".activity.WelcomeActivity" android:screenOrientation="portrait" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.ChoiceActivity" android:screenOrientation="portrait" android:launchMode="singleTop">
         </activity>
         <!--登录-->
         <activity android:name=".activity.LoginActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
@@ -40,20 +42,28 @@
         <activity android:name=".activity.MainActivity" android:launchMode="singleTask" android:screenOrientation="portrait"/>
         <!--通知公告-->
         <activity android:name=".activity.NoticeActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
-        <!--通知详情-->
+        <!--通知详情（业主）-->
         <activity android:name=".activity.NoticeDetailsActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
-        <!--发布通知-->
+        <!--发布通知（物业）-->
         <activity android:name=".activity.NoticeAddActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
-        <!--物业报修/投诉界面-->
+        <!--物业报修/投诉界面（物业）-->
         <activity android:name=".activity.RepairActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
-        <!--报修/投诉详情-->
+        <!--报修/投诉详情（物业）-->
         <activity android:name=".activity.RepairDetailsActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
-        <!--提交报修/维修-->
+        <!--提交报修/维修（业主）-->
         <activity android:name=".activity.RepaireAddActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
         <!--安保-->
         <activity android:name=".activity.SecurityActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
-        <!--安保录入-->
+        <!--安保录入（物业）-->
         <activity android:name=".activity.SecurityAddActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
+        <!--缴费（业主）-->
+        <activity android:name=".activity.PayActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <!--收费记录（物业）-->
+        <activity android:name=".activity.PayListActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <!--缴费详情-->
+        <activity android:name=".activity.PayDetailsActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <!--关于我们-->
+        <activity android:name=".activity.AboutActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
     </application>
 
 </manifest>

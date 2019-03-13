@@ -77,6 +77,7 @@ public class NoticeActivity extends BaseActivity implements SwipeRefreshLayout.O
         multipleStatusView.setOnRetryClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                multipleStatusView.showLoading();
                 initNotice();
             }
         });

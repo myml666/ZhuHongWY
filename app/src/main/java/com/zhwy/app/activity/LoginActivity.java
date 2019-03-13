@@ -45,13 +45,19 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected boolean isHaveTitle() {
-        return false;
+        return true;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+        initDatas();
+    }
+
+    private void initDatas() {
+        setBackIcon(R.drawable.ic_back_white,false);
+        setTitle("登录",R.color.colorWhite);
     }
 
     @OnClick({R.id.activity_login_tv_regist, R.id.activity_login_tv_login})

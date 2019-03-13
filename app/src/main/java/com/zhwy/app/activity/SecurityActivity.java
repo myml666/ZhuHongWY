@@ -81,6 +81,7 @@ public class SecurityActivity extends BaseActivity implements SwipeRefreshLayout
         multipleStatusView.setOnRetryClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                multipleStatusView.showLoading();
                 initSecurity();
             }
         });
