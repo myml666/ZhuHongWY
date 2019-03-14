@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.avos.avoscloud.AVException;
@@ -17,6 +18,7 @@ import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.Permission;
@@ -26,6 +28,8 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.AboutActivity;
+import com.zhwy.app.activity.ChoiceActivity;
+import com.zhwy.app.activity.LoginActivity;
 import com.zhwy.app.activity.MainActivity;
 import com.zhwy.app.activity.NoticeActivity;
 import com.zhwy.app.activity.PayListActivity;
@@ -70,7 +74,7 @@ public class PropertyMainMineFragment extends BaseFragment {
     private int[] mItemIcons = {R.drawable.ic_about,R.drawable.ic_logout};
     private MainHomeMenuAdapter mMainHomeMenuAdapter;
     private RxPermissions rxPermissions;
-
+    private AlertDialog alertDialog;
     @Override
     protected int LayoutRes() {
         return R.layout.fragment_mainmine;
@@ -90,6 +94,14 @@ public class PropertyMainMineFragment extends BaseFragment {
             mainActivity.setChoicePhotoCallback(new ChoicePhotoCallback() {
                 @Override
                 public void onPhotoChoice(final File file) {
+                    if(alertDialog==null){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setView(View.inflate(getContext(),R.layout.dialog_uploadphoto,null));
+                        alertDialog = builder.create();
+                    }
+                    alertDialog.show();
+                    alertDialog.getWindow().setLayout( ScreenUtils.getScreenWidth()/4*2, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                     try {
                         AVFile f = AVFile.withAbsoluteLocalPath("temp.png", file.getAbsolutePath());
                         AVUser currentUser = AVUser.getCurrentUser();
@@ -97,6 +109,9 @@ public class PropertyMainMineFragment extends BaseFragment {
                         currentUser.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(AVException e) {
+                                if(alertDialog!=null){
+                                    alertDialog.dismiss();
+                                }
                                 if(e==null){
                                     ToastUtils.showShort("头像修改成功");
                                     Glide.with(getContext()).load(file).into(fragmentOwnermainmineIcon);
@@ -106,6 +121,9 @@ public class PropertyMainMineFragment extends BaseFragment {
                             }
                         });
                     } catch (FileNotFoundException e) {
+                        if(alertDialog!=null){
+                            alertDialog.dismiss();
+                        }
                         e.printStackTrace();
                     }
                 }
@@ -166,7 +184,7 @@ public class PropertyMainMineFragment extends BaseFragment {
             public void onClick(DialogInterface dialog, int which) {
                 AVUser.logOut();
                 dialog.dismiss();
-                AppUtils.exitApp();
+                gotoActivity(LoginActivity.class);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

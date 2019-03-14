@@ -1,13 +1,17 @@
 package com.zhwy.app.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -53,10 +57,9 @@ public class MainActivity extends BaseActivity {
     private MainFragmentPagerAdapter mainFragmentPagerAdapter;
     private ChoicePhotoCallback choicePhotoCallback;
 
-    public ChoicePhotoCallback getChoicePhotoCallback() {
+    private ChoicePhotoCallback getChoicePhotoCallback() {
         return choicePhotoCallback;
     }
-
     /**
      * 设置选择图片的回调事件
      * @param choicePhotoCallback

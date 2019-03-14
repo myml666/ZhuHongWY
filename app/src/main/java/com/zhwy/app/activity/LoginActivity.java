@@ -1,15 +1,18 @@
 package com.zhwy.app.activity;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.base.BaseActivity;
@@ -37,6 +40,7 @@ public class LoginActivity extends BaseActivity {
     EditText activityLoginUsername;
     @BindView(R.id.activity_login_password)
     EditText activityLoginPassword;
+    private AlertDialog alertDialog;
 
     @Override
     protected int LayoutRes() {
@@ -76,6 +80,14 @@ public class LoginActivity extends BaseActivity {
      * 登录
      */
     private void login() {
+        if(alertDialog==null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setView(View.inflate(this,R.layout.dialog_loading,null));
+            alertDialog = builder.create();
+        }
+        alertDialog.show();
+        alertDialog.getWindow().setLayout( ScreenUtils.getScreenWidth()/4*2, LinearLayout.LayoutParams.WRAP_CONTENT);
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         String userName = GetTextUtils.getText(activityLoginUsername);
         String passWord = GetTextUtils.getText(activityLoginPassword);
         if(TextUtils.isEmpty(userName)){
@@ -90,6 +102,9 @@ public class LoginActivity extends BaseActivity {
         AVUser.logInInBackground(identity+userName, passWord, new LogInCallback<AVUser>() {
             @Override
             public void done(AVUser avUser, AVException e) {
+                if(alertDialog!=null){
+                    alertDialog.dismiss();
+                }
                 if(e==null){
                     //登录成功
                     ToastUtils.showShort("登录成功");
@@ -100,7 +115,6 @@ public class LoginActivity extends BaseActivity {
 //                        业主
                         gotoActivity(MainActivity.class);
                     }
-                    finish();
                 }else {
                     //登录失败
                     ToastUtils.showShort(e.getMessage());

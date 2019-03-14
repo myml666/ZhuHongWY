@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.zhwy.app.R;
 import com.zhwy.app.activity.base.BaseActivity;
+import com.zhwy.app.utils.ValuesUtils;
 import com.zhwy.app.widget.PageIndicator;
 import com.zhwy.app.widget.WelcomTopView;
 import com.zhwy.app.widget.viewpagertransformer.ScaleInTransformer;
@@ -89,6 +90,8 @@ public class WelcomeActivity extends BaseActivity {
 
     @OnClick(R.id.ctivity_welcome_ty)
     public void onViewClicked() {
+//        设置欢迎页标记为真即看过欢迎页
+        ValuesUtils.putWelcomFlag(true);
         gotoActivity(ChoiceActivity.class);
     }
 

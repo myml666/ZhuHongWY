@@ -25,17 +25,20 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public" />
         </provider>
-        <activity android:name=".activity.WelcomeActivity" android:screenOrientation="portrait" android:launchMode="singleTop">
+        <activity android:name=".activity.SplashActivity" android:screenOrientation="portrait" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ChoiceActivity" android:screenOrientation="portrait" android:launchMode="singleTop">
+        <!--欢迎页-->
+        <activity android:name=".activity.WelcomeActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <!--身份选择-->
+        <activity android:name=".activity.ChoiceActivity" android:screenOrientation="portrait" android:launchMode="singleTask">
         </activity>
         <!--登录-->
-        <activity android:name=".activity.LoginActivity" android:launchMode="singleTop" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LoginActivity" android:launchMode="singleTask" android:screenOrientation="portrait"/>
         <!--注册-->
         <activity android:name=".activity.RegistActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
         <!--物业主界面-->
