@@ -7,11 +7,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="@dimen/dp_30"
         android:id="@+id/fragment_ownermainmine_icon"
         android:src="@drawable/ic_defaultusericon"
-        android:layout_marginTop="@dimen/dp_30"
         android:layout_width="@dimen/dp_130"
         android:layout_height="@dimen/dp_130" />
+    <TextView
+        android:id="@+id/fragment_ownermainmine_tv_rz"
+        android:text="未认证"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/dp_1"
+        android:background="@drawable/selector_renzheng"
+        android:textColor="#f00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/fragment_ownermainmine_tv_username"
         android:textSize="@dimen/sp_15"

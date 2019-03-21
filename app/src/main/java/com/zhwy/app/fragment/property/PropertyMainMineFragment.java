@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +36,7 @@ import com.zhwy.app.activity.NoticeActivity;
 import com.zhwy.app.activity.PayListActivity;
 import com.zhwy.app.activity.RepairActivity;
 import com.zhwy.app.activity.RepaireAddActivity;
+import com.zhwy.app.activity.ShiMingActivity;
 import com.zhwy.app.adapter.MainHomeMenuAdapter;
 import com.zhwy.app.beans.MainHomeItemBean;
 import com.zhwy.app.fragment.base.BaseFragment;
@@ -69,9 +71,11 @@ public class PropertyMainMineFragment extends BaseFragment {
     TextView fragmentOwnermainmineTvUsername;
     @BindView(R.id.fragment_ownermainmine_gv)
     MyDividerGridView fragmentOwnermainmineGv;
+    @BindView(R.id.fragment_ownermainmine_tv_rz)
+    TextView fragmentOwnermainmineTvRz;
     private ArrayList<MainHomeItemBean> mHomeItemBeans;
-    private String[] mItemTitles = {"关于我们","退出登录"};
-    private int[] mItemIcons = {R.drawable.ic_about,R.drawable.ic_logout};
+    private String[] mItemTitles = {"关于我们","实名认证","退出登录"};
+    private int[] mItemIcons = {R.drawable.ic_about,R.drawable.ic_sm,R.drawable.ic_logout};
     private MainHomeMenuAdapter mMainHomeMenuAdapter;
     private RxPermissions rxPermissions;
     private AlertDialog alertDialog;
@@ -88,6 +92,17 @@ public class PropertyMainMineFragment extends BaseFragment {
     }
 
     private void initDatas() {
+        //是否认证
+        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
+        if(isRealName){
+            fragmentOwnermainmineTvRz.setSelected(true);
+            fragmentOwnermainmineTvRz.setTextColor(Color.GREEN);
+            fragmentOwnermainmineTvRz.setText("已认证");
+        }else {
+            fragmentOwnermainmineTvRz.setSelected(false);
+            fragmentOwnermainmineTvRz.setTextColor(Color.RED);
+            fragmentOwnermainmineTvRz.setText("未认证");
+        }
         FragmentActivity activity = getActivity();
         if(activity instanceof MainActivity){
             MainActivity mainActivity = (MainActivity) activity;
@@ -159,6 +174,10 @@ public class PropertyMainMineFragment extends BaseFragment {
                             gotoActivity(AboutActivity.class);
                             break;
                         case 1:
+                            //实名认证
+                           shiming();
+                            break;
+                        case 2:
                             //退出登录
                             logout();
                             break;
@@ -171,7 +190,29 @@ public class PropertyMainMineFragment extends BaseFragment {
             mMainHomeMenuAdapter.notifyDataSetChanged();
         }
     }
-
+    /**
+     * 进行实名认证
+     */
+    private void shiming() {
+        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
+        if(isRealName){
+            ToastUtils.showShort("您已认证成功，无需重复认证");
+            return;
+        }
+        rxPermissions.requestEachCombined(Manifest.permission.CAMERA)
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        if (permission.granted) {
+                            gotoActivity(ShiMingActivity.class);
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            ToastUtils.showShort("您已拒绝权限申请");
+                        } else {
+                            ToastUtils.showShort("您已拒绝权限申请，请前往设置>应用管理>权限管理打开权限");
+                        }
+                    }
+                });
+    }
     /**
      * 退出登录
      */
