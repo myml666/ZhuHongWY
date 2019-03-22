@@ -37,21 +37,21 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * @ProjectName: ZhuHongWY
  * @Package: com.zhwy.app.activity
- * @ClassName: ShiMingActivity
- * @Description: java类作用描述 ：实名认证
+ * @ClassName: ShiMingTakePictureActivity
+ * @Description: java类作用描述 ：身份证扫描
  * @UpdateUser: 更新者：
  * @UpdateRemark: 更新说明：
  * @Version: 1.0
  */
 
-public class ShiMingActivity extends BaseActivity implements TakePictureCameraView.TakePictureCallBack{
+public class ShiMingTakePictureActivity extends BaseActivity implements TakePictureCameraView.TakePictureCallBack{
     private TakePictureCameraView camera;
     private TakePictureMaskView mask;
     private View viewTakepicture;
     private AlertDialog alertDialog;
     @Override
     protected int LayoutRes() {
-        return R.layout.activity_shiming;
+        return R.layout.activity_shimingtakepicture;
     }
 
     @Override
@@ -180,56 +180,17 @@ public class ShiMingActivity extends BaseActivity implements TakePictureCameraVi
         final JsonObject data = info.getAsJsonObject("data");
         final String name = data.get("name").getAsString();
         final String idnum = data.get("id_number").getAsString();
-        AlertDialog.Builder builder = new AlertDialog.Builder(ShiMingActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ShiMingTakePictureActivity.this);
         builder.setTitle("提示");
         builder.setMessage("姓名："+name+"\n"+"身份证号："+idnum);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //进行实名认证
-                AVUser currentUser = AVUser.getCurrentUser();
-                currentUser.put("isRealName",true);
-                currentUser.put("idCardNum",idnum);
-                currentUser.put("realName",name);
-                currentUser.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(AVException e) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ShiMingActivity.this);
-                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        if(e==null){
-                            builder.setTitle("提示");
-                            builder.setMessage("认证成功");
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialog) {
-                                    dialog.dismiss();
-                                    finish();
-                                }
-                            });
-                            alertDialog.show();
-                        }else {
-                            builder.setTitle("提示");
-                            builder.setMessage("认证失败，请重试");
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialog) {
-                                    dialog.dismiss();
-                                    if(camera!=null){
-                                        camera.startPreview();
-                                    }
-                                }
-                            });
-                            alertDialog.show();
-                        }
-                    }
-                });
+                Intent intent = new Intent();
+                intent.putExtra("name",name);
+                intent.putExtra("idnum",idnum);
+                ShiMingTakePictureActivity.this.setResult(1,intent);
+                finish();
             }
         });
         builder.setNegativeButton("重新识别", new DialogInterface.OnClickListener() {

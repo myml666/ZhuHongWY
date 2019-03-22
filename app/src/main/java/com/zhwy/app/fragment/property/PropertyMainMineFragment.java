@@ -3,7 +3,6 @@ package com.zhwy.app.fragment.property;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
-import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
@@ -29,14 +27,9 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhwy.app.R;
 import com.zhwy.app.activity.AboutActivity;
-import com.zhwy.app.activity.ChoiceActivity;
 import com.zhwy.app.activity.LoginActivity;
 import com.zhwy.app.activity.MainActivity;
-import com.zhwy.app.activity.NoticeActivity;
-import com.zhwy.app.activity.PayListActivity;
-import com.zhwy.app.activity.RepairActivity;
-import com.zhwy.app.activity.RepaireAddActivity;
-import com.zhwy.app.activity.ShiMingActivity;
+import com.zhwy.app.activity.ShimngActivity;
 import com.zhwy.app.adapter.MainHomeMenuAdapter;
 import com.zhwy.app.beans.MainHomeItemBean;
 import com.zhwy.app.fragment.base.BaseFragment;
@@ -92,17 +85,6 @@ public class PropertyMainMineFragment extends BaseFragment {
     }
 
     private void initDatas() {
-        //是否认证
-        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
-        if(isRealName){
-            fragmentOwnermainmineTvRz.setSelected(true);
-            fragmentOwnermainmineTvRz.setTextColor(Color.GREEN);
-            fragmentOwnermainmineTvRz.setText("已认证");
-        }else {
-            fragmentOwnermainmineTvRz.setSelected(false);
-            fragmentOwnermainmineTvRz.setTextColor(Color.RED);
-            fragmentOwnermainmineTvRz.setText("未认证");
-        }
         FragmentActivity activity = getActivity();
         if(activity instanceof MainActivity){
             MainActivity mainActivity = (MainActivity) activity;
@@ -150,7 +132,22 @@ public class PropertyMainMineFragment extends BaseFragment {
         initUserInfo();
         initMenu();
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        //是否认证
+        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
+        if(isRealName){
+            fragmentOwnermainmineTvRz.setSelected(true);
+            fragmentOwnermainmineTvRz.setTextColor(Color.GREEN);
+            fragmentOwnermainmineTvRz.setText("已认证");
+            fragmentOwnermainmineTvUsername.setText(AVUser.getCurrentUser().getString("realName"));
+        }else {
+            fragmentOwnermainmineTvRz.setSelected(false);
+            fragmentOwnermainmineTvRz.setTextColor(Color.RED);
+            fragmentOwnermainmineTvRz.setText("未认证");
+        }
+    }
     /**
      * 加载菜单
      */
@@ -167,7 +164,6 @@ public class PropertyMainMineFragment extends BaseFragment {
             mMainHomeMenuAdapter.setOnItemClickListener(new MainHomeMenuAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                    Intent startActivityIntent;
                     switch (position) {
                         case 0:
                             //关于我们
@@ -175,7 +171,7 @@ public class PropertyMainMineFragment extends BaseFragment {
                             break;
                         case 1:
                             //实名认证
-                           shiming();
+                            gotoActivity(ShimngActivity.class);
                             break;
                         case 2:
                             //退出登录
@@ -189,29 +185,6 @@ public class PropertyMainMineFragment extends BaseFragment {
             mMainHomeMenuAdapter.setmDatas(mHomeItemBeans);
             mMainHomeMenuAdapter.notifyDataSetChanged();
         }
-    }
-    /**
-     * 进行实名认证
-     */
-    private void shiming() {
-        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
-        if(isRealName){
-            ToastUtils.showShort("您已认证成功，无需重复认证");
-            return;
-        }
-        rxPermissions.requestEachCombined(Manifest.permission.CAMERA)
-                .subscribe(new Consumer<Permission>() {
-                    @Override
-                    public void accept(Permission permission) throws Exception {
-                        if (permission.granted) {
-                            gotoActivity(ShiMingActivity.class);
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            ToastUtils.showShort("您已拒绝权限申请");
-                        } else {
-                            ToastUtils.showShort("您已拒绝权限申请，请前往设置>应用管理>权限管理打开权限");
-                        }
-                    }
-                });
     }
     /**
      * 退出登录

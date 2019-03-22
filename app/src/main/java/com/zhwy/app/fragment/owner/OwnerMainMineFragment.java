@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,7 +32,7 @@ import com.zhwy.app.activity.LoginActivity;
 import com.zhwy.app.activity.MainActivity;
 import com.zhwy.app.activity.PayListActivity;
 import com.zhwy.app.activity.RepairActivity;
-import com.zhwy.app.activity.ShiMingActivity;
+import com.zhwy.app.activity.ShimngActivity;
 import com.zhwy.app.adapter.MainHomeMenuAdapter;
 import com.zhwy.app.beans.MainHomeItemBean;
 import com.zhwy.app.fragment.base.BaseFragment;
@@ -49,7 +47,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.functions.Consumer;
 
@@ -92,17 +89,6 @@ public class OwnerMainMineFragment extends BaseFragment {
     }
 
     private void initDatas() {
-        //是否认证
-        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
-        if(isRealName){
-            fragmentOwnermainmineTvRz.setSelected(true);
-            fragmentOwnermainmineTvRz.setTextColor(Color.GREEN);
-            fragmentOwnermainmineTvRz.setText("已认证");
-        }else {
-            fragmentOwnermainmineTvRz.setSelected(false);
-            fragmentOwnermainmineTvRz.setTextColor(Color.RED);
-            fragmentOwnermainmineTvRz.setText("未认证");
-        }
         FragmentActivity activity = getActivity();
         if (activity instanceof MainActivity) {
             MainActivity mainActivity = (MainActivity) activity;
@@ -151,6 +137,23 @@ public class OwnerMainMineFragment extends BaseFragment {
         initMenu();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //是否认证
+        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
+        if(isRealName){
+            fragmentOwnermainmineTvRz.setSelected(true);
+            fragmentOwnermainmineTvRz.setTextColor(Color.GREEN);
+            fragmentOwnermainmineTvRz.setText("已认证");
+            fragmentOwnermainmineTvUsername.setText(AVUser.getCurrentUser().getString("realName"));
+        }else {
+            fragmentOwnermainmineTvRz.setSelected(false);
+            fragmentOwnermainmineTvRz.setTextColor(Color.RED);
+            fragmentOwnermainmineTvRz.setText("未认证");
+        }
+    }
+
     /**
      * 加载菜单
      */
@@ -187,7 +190,7 @@ public class OwnerMainMineFragment extends BaseFragment {
                             break;
                         case 3:
                             //实名认证
-                            shiming();
+                            gotoActivity(ShimngActivity.class);
                             break;
                         case 4:
                             //退出登录
@@ -201,30 +204,6 @@ public class OwnerMainMineFragment extends BaseFragment {
             mMainHomeMenuAdapter.setmDatas(mHomeItemBeans);
             mMainHomeMenuAdapter.notifyDataSetChanged();
         }
-    }
-
-    /**
-     * 进行实名认证
-     */
-    private void shiming() {
-        boolean isRealName = AVUser.getCurrentUser().getBoolean("isRealName");
-        if (isRealName) {
-            ToastUtils.showShort("您已认证成功，无需重复认证");
-            return;
-        }
-        rxPermissions.requestEachCombined(Manifest.permission.CAMERA)
-                .subscribe(new Consumer<Permission>() {
-                    @Override
-                    public void accept(Permission permission) throws Exception {
-                        if (permission.granted) {
-                            gotoActivity(ShiMingActivity.class);
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            ToastUtils.showShort("您已拒绝权限申请");
-                        } else {
-                            ToastUtils.showShort("您已拒绝权限申请，请前往设置>应用管理>权限管理打开权限");
-                        }
-                    }
-                });
     }
 
     /**

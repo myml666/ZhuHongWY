@@ -71,8 +71,10 @@
         <activity android:name=".activity.PayDetailsActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
         <!--关于我们-->
         <activity android:name=".activity.AboutActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <!--拍照-->
+        <activity android:name=".activity.ShiMingTakePictureActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
         <!--实名认证-->
-        <activity android:name=".activity.ShiMingActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
+        <activity android:name=".activity.ShimngActivity" android:screenOrientation="portrait" android:launchMode="singleTop"/>
     </application>
 
 </manifest>

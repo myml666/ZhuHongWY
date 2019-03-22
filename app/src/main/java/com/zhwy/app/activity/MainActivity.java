@@ -21,6 +21,7 @@ import com.zhwy.app.R;
 import com.zhwy.app.activity.base.BaseActivity;
 import com.zhwy.app.adapter.MainFragmentPagerAdapter;
 import com.zhwy.app.beans.TabEntity;
+import com.zhwy.app.fragment.PYQFragment;
 import com.zhwy.app.fragment.callback.ChoicePhotoCallback;
 import com.zhwy.app.fragment.owner.OwnerMainHomeFragment;
 import com.zhwy.app.fragment.owner.OwnerMainMineFragment;
@@ -47,11 +48,11 @@ public class MainActivity extends BaseActivity {
     ViewPager activityMainViewpager;
     @BindView(R.id.activity_main_bottomlayout)
     CommonTabLayout activityMainBottomlayout;
-    private String[] mTitles = {"首页", "我的"};
+    private String[] mTitles = {"首页","圈子", "我的"};
     private int[] mIconUnselectIds = {
-            R.drawable.ic_mainhome, R.drawable.ic_mainmine};
+            R.drawable.ic_mainhome,R.drawable.ic_qz, R.drawable.ic_mainmine};
     private int[] mIconSelectIds = {
-            R.drawable.ic_mainhomeselect, R.drawable.ic_mainmineselect};
+            R.drawable.ic_mainhomeselect,R.drawable.ic_qzselect, R.drawable.ic_mainmineselect};
     private ArrayList<CustomTabEntity> mTabEntities ;
     private ArrayList<Fragment> mFragments;
     private MainFragmentPagerAdapter mainFragmentPagerAdapter;
@@ -96,6 +97,9 @@ public class MainActivity extends BaseActivity {
                         setTitle("首页",R.color.colorWhite);
                         break;
                     case 1:
+                        setTitle("圈子",R.color.colorWhite);
+                        break;
+                    case 2:
                         setTitle("我的",R.color.colorWhite);
                         break;
                 }
@@ -120,6 +124,9 @@ public class MainActivity extends BaseActivity {
                         setTitle("首页",R.color.colorWhite);
                         break;
                     case 1:
+                        setTitle("圈子",R.color.colorWhite);
+                        break;
+                    case 2:
                         setTitle("我的",R.color.colorWhite);
                         break;
                 }
@@ -149,9 +156,11 @@ public class MainActivity extends BaseActivity {
         String identity = ValuesUtils.getIdentity();
         if(identity.equals(ValuesUtils.IDENTITY_WY)){
             mFragments.add(new PropertyMainHomeFragment());
+            mFragments.add(new PYQFragment());
             mFragments.add(new PropertyMainMineFragment());
         }else {
             mFragments.add(new OwnerMainHomeFragment());
+            mFragments.add(new PYQFragment());
             mFragments.add(new OwnerMainMineFragment());
         }
         if(mTabEntities==null){

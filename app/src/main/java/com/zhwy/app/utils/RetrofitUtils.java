@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitUtils {
-    private static final String  BASE_URL="http://111.67.196.73/Ocr/";
+    private static final String  BASE_URL="http://111.67.201.129/Ocr/";
     private volatile static RetrofitUtils mRetrofitUtils;
     private Retrofit mRetrofit;
 
